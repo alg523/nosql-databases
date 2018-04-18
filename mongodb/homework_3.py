@@ -8,7 +8,7 @@ collection_2 = db.ticketSales
 collection_3 = db.ticketPrices
 
 
-+
+
 #Part A
 collection.update_many({"rated":"NOT RATED"}, {"$set":{"rated":"Pending rating"}})
 
