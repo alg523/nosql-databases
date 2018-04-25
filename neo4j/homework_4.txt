@@ -29,7 +29,7 @@ WITH Harry, Ron, Hermione, Voldermort, Dumbledore, Ginny, Snape, Hedwig
 MATCH (l:person)-[r]-()
 
 //RETURN
-RETURN DISTINCT l, collect(type(r));
+RETURN l, collect(type(r));
 
 // This is an example. Your own commands should *not* be commented out so we can pipe the file into the cypher-shell.
 // If you'd like to test your commands, you can run 'cat homework_4.txt | cypher-shell -u neo4j -p test' from
