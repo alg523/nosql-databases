@@ -1,5 +1,35 @@
 // The scenario you have used for your schema is:
+// Harry Potter
+//NODES
+CREATE (Harry:person{role:'protagonist'})
+CREATE (Ron:person{role:'secondary protagonist'})
+CREATE (Hermione:person{role:'secondary protagonist'})
+CREATE (Voldermort:person{role:'antagonist'})
+CREATE (Dumbledore:person{role:'secondary protagonist'})
+CREATE (Ginny:person{role:'secondary protagonist'})
+CREATE (Snape:person{role:'secondary antagonist'})
+CREATE (Hedwig:animal{role:'pet'})
 
+//RELATIONSHIPS
+CREATE (Ron)-[r1:brother_in_law {time:'seventh book'}]->(Harry)
+CREATE (Ron)-[r2:sibling]->(Ginny)
+CREATE (Ginny)-[r3:friend]->(Hermione)
+CREATE (Ginny)-[r4:wife {time:'seventh book'}]->(Harry)
+CREATE (Hermione)-[:friend]->(Harry)
+CREATE (Hedwig)-[r5:companion {time:'first book'}]->(Harry)
+CREATE (Dumbledore)-[r6:enemy {time:'first book'}]->(Voldermort)
+CREATE (Dumbledore)-[r7:ally]->(Snape)
+CREATE (Dumbledore)-[r8:teacher]->(Harry)
+CREATE (Snape)-[:ally]->(Voldermort)
+CREATE (Voldermort)-[:enemy {time:'first book'}]->(Harry)
+CREATE (Voldermort)-[:enemy]->(Hermione)
+
+//QUERY
+WITH Harry, Ron, Hermione, Voldermort, Dumbledore, Ginny, Snape, Hedwig
+MATCH (l:person)-[r]-()
+
+//RETURN
+RETURN DISTINCT l, collect(type(r));
 
 // This is an example. Your own commands should *not* be commented out so we can pipe the file into the cypher-shell.
 // If you'd like to test your commands, you can run 'cat homework_4.txt | cypher-shell -u neo4j -p test' from
